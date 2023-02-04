@@ -62,13 +62,13 @@ jobs:
     - name: executing remote ssh comands to deploy
       uses: appleboy/ssh-action@master
       with:
-       host: ${{ secrets.HOST }}
-       username: ${{ secrets.USER }}
-       key: ${{ secrets.SSH_KEY}}
-       passphrase: ${{ secrets.PASSPHRASE }}
-       script: |
-         # Выполняет pull образа с DockerHub
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.SSH_KEY}}
+        passphrase: ${{ secrets.PASSPHRASE }}
+        script: |
+          # Выполняет pull образа с DockerHub
           sudo docker pull foreducationpurpose/infra_project:v.1.0
-          #остановка всех контейнеров
+          # остановка всех контейнеров
           sudo docker stop $(sudo docker ps -a -q)
           sudo docker run --rm -d -p 5000:5000 foreducationpurpose/infra_project:v.1.0
